@@ -45,11 +45,10 @@ jmeter -n -t testplan.jmx -l results.jtl
 ```
 - On starting the simulation, you will note that logs indicate that primary datasource is being used
   ![logs](src/main/resources/images/logs1.png?raw=true "Title")
-- Failover your primary datasource. You will notice the traffic is automatically routed to DR database.
-  ![logs](src/main/resources/images/logs2.png?raw=true "Title")
+- Failover your primary datasource. You will notice the traffic going to primary and perform  retries on primary. 
+- Once the retries on primary cluster are exhausted, you will see the transaction fallback on DR cluster. 
 - Analyze the results. All the transactions should be successful since they will be retried  if primary cluster fails.
   ![jmeter](src/main/resources/images/jmeter-status.png?raw=true "Title")
-- You can bring up the primary cluster and notice that after 5 seconds, primary datasource starts getting used again.
-  ![Logs](src/main/resources/images/logs3.png?raw=true "Title")
+
 
 
